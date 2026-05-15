@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com"
+      xmlns:fx="http://javafx.com" fx:controller="com.example.calorieproject.LoginController">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+    </padding>
+
+    <Label text="Calorie Project Login" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Login" onAction="#handleLogin" prefWidth="80"/>
+        <Button text="Register" onAction="#switchToRegister" prefWidth="80"/>
+    </HBox>
+
+    <Label fx:id="statusLabel" textFill="RED" wrapText="true"/>
+</VBox>
