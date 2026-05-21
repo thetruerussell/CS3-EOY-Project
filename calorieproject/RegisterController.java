@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.*;
+import java.util.Random;
 
 public class RegisterController {
     @FXML private TextField nameField;
@@ -20,31 +21,45 @@ public class RegisterController {
     @FXML
     public void handleCreateAccount(ActionEvent event) {
         try {
-            if (nameField == null || userField == null || passField == null) {
-                System.out.println("Error: FXML IDs do not match Controller fields!");
-                return;
-            }
-
-            String name = nameField.getText();
-            String user = userField.getText();
-            String pass = passField.getText();
+            String name = nameField.getText().trim();
+            String user = userField.getText().trim();
+            String pass = passField.getText().trim();
 
             if (name.isEmpty() || user.isEmpty() || pass.isEmpty()) {
+                statusLabel.setStyle("-fx-text-fill: red;");
                 statusLabel.setText("All fields are required.");
                 return;
             }
-
             if (!pass.equals(confirmPassField.getText())) {
+                statusLabel.setStyle("-fx-text-fill: red;");
                 statusLabel.setText("Passwords do not match.");
                 return;
             }
 
-            // Save to text file
-            try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("accounts.txt", true)))) {
-                out.println(name + "," + user + "," + pass);
-                switchToLogin(event);
+            Random rand = new Random();
+            int generatedAccNum = rand.nextInt(900000) + 100000;
+            Account newAccount = new Account(user, pass, generatedAccNum, name);
+
+            File file = new File(System.getProperty("user.home"), "accounts.txt");
+
+            if (!file.exists()) {
+                file.createNewFile();
             }
+
+            try (FileWriter fw = new FileWriter(file, true);
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter out = new PrintWriter(bw)) {
+
+                out.println(newAccount.toCsvString());
+                out.flush();
+                System.out.println("💾 ACCOUNT WRITTEN TO DISK AT: " + file.getAbsolutePath());
+            }
+
+            switchToLogin(event);
+
         } catch (Exception e) {
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("System error tracking registry setup.");
             e.printStackTrace();
         }
     }

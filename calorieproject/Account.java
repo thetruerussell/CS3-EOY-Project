@@ -20,6 +20,27 @@ public class Account {
         this.customMeal = new ArrayList<>();
     }
 
+    public String toCsvString() {
+        return username + "," + password + "," + accountNumber + "," + accountHolderName;
+    }
+
+    public static Account fromCsvString(String csvLine) {
+        if (csvLine == null || csvLine.trim().isEmpty()) return null;
+
+        String[] parts = csvLine.split(",");
+
+        if (parts.length >= 4) {
+            String user = parts[0].trim();
+            String pass = parts[1].trim();
+            int accNum = Integer.parseInt(parts[2].trim());
+            String name = parts[3].trim();
+
+            return new Account(user, pass, accNum, name);
+        }
+        return null;
+    }
+
+
     public String getUsername() { return username; }
     public String getPassword() { return password; }
     public int getAccountNumber() { return accountNumber; }

@@ -16,40 +16,60 @@ public class LoginController {
     @FXML private PasswordField passwordField;
     @FXML private Label statusLabel;
 
+    public static Account loggedInUser;
+
     @FXML
     public void handleLogin(ActionEvent event) {
-        String user = usernameField.getText();
-        String pass = passwordField.getText();
+        String user = usernameField.getText().trim();
+        String pass = passwordField.getText().trim();
 
         if (user.isEmpty() || pass.isEmpty()) {
+            statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("Please enter both username and password.");
             return;
         }
 
         boolean authenticated = false;
-        try (Scanner scanner = new Scanner(new File("accounts.txt"))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] parts = line.split(",");
-                if (parts.length >= 3) {
-                    String storedUser = parts[1];
-                    String storedPass = parts[2];
-                    if (storedUser.equals(user) && storedPass.equals(pass)) {
-                        authenticated = true;
-                        break;
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
+        File file = new File(System.getProperty("user.home"), "accounts.txt");
+
+        if (!file.exists()) {
+            statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("No accounts found. Please register.");
             return;
         }
 
-        if (authenticated) {
-            statusLabel.setStyle("-fx-text-fill: green;");
-            statusLabel.setText("Login successful!");
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Account acc = Account.fromCsvString(line);
+                if (acc != null && acc.getUsername().equals(user) && acc.getPassword().equals(pass)) {
+                    authenticated = true;
+                    loggedInUser = acc;
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("Error accessing account database.");
+            return;
+        }
 
+        if (authenticated) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CalorieTracker.fxml"));
+                Parent root = loader.load();
+                
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Calorie Tracker Dashboard");
+                stage.show();
+            } catch (IOException e) {
+                statusLabel.setStyle("-fx-text-fill: red;");
+                statusLabel.setText("Failed to load Dashboard UI.");
+                e.printStackTrace();
+            }
         } else {
+            statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("Invalid username or password.");
         }
     }
@@ -62,4 +82,3 @@ public class LoginController {
         stage.show();
     }
 }
-
