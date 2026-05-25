@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.calorieproject.CreateFoodController"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            style="-fx-background:#0f172a;">
+
+    <content>
+
+        <VBox alignment="CENTER"
+              spacing="25"
+              style="-fx-background-color: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);">
+
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <!-- TITLE -->
+            <Label text="Create Food Item"
+                   style="-fx-font-size:30px;
+                          -fx-font-weight:bold;
+                          -fx-text-fill:white;"/>
+
+            <!-- CARD -->
+            <VBox alignment="CENTER"
+                  spacing="18"
+                  maxWidth="430"
+                  style="-fx-background-color: rgba(255,255,255,0.08);
+                         -fx-background-radius:24;
+                         -fx-padding:35;
+                         -fx-border-color: rgba(255,255,255,0.12);
+                         -fx-border-radius:24;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 18, 0.2, 0, 6);">
+
+                <!-- NAME -->
+                <TextField fx:id="nameField"
+                           promptText="Food Name"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <!-- CALORIES -->
+                <TextField fx:id="calField"
+                           promptText="Calories"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <!-- FAT -->
+                <TextField fx:id="fatField"
+                           promptText="Fat"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <!-- CARBS -->
+                <TextField fx:id="carbField"
+                           promptText="Carbs"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <!-- PROTEIN -->
+                <TextField fx:id="proteinField"
+                           promptText="Protein"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <!-- STATUS -->
+                <Label fx:id="statusLabel"
+                       wrapText="true"
+                       maxWidth="360"
+                       style="-fx-text-fill:#fca5a5;
+                              -fx-font-size:13px;
+                              -fx-font-weight:bold;"/>
+
+                <!-- BUTTONS -->
+                <HBox spacing="14" alignment="CENTER">
+
+                    <Button text="Save Food"
+                            onAction="#saveFood"
+                            prefWidth="170"
+                            prefHeight="42"
+                            style="-fx-background-color:#3b82f6;
+                                   -fx-text-fill:white;
+                                   -fx-font-size:14px;
+                                   -fx-font-weight:bold;
+                                   -fx-background-radius:14;"/>
+
+                    <Button text="Back"
+                            onAction="#goBack"
+                            prefWidth="170"
+                            prefHeight="42"
+                            style="-fx-background-color:#334155;
+                                   -fx-text-fill:white;
+                                   -fx-font-size:14px;
+                                   -fx-font-weight:bold;
+                                   -fx-background-radius:14;"/>
+
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+
+    </content>
+
+</ScrollPane>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.calorieproject.LoginController"
+            style="-fx-background-color:#0f172a;">
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25">
+
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <!-- TITLE -->
+            <VBox alignment="CENTER" spacing="6">
+
+                <Label text="NutriTrack"
+                       style="-fx-font-size:40px;
+                              -fx-font-weight:bold;
+                              -fx-text-fill:#f8fafc;"/>
+
+                <Label text="Track nutrition. Build consistency. Stay healthy."
+                       style="-fx-font-size:14px;
+                              -fx-text-fill:#94a3b8;"/>
+
+            </VBox>
+
+            <!-- LOGIN CARD -->
+            <VBox alignment="CENTER"
+                  spacing="18"
+                  maxWidth="420"
+                  prefWidth="420"
+                  style="-fx-background-color:rgba(255,255,255,0.08);
+                         -fx-background-radius:22;
+                         -fx-padding:35;
+                         -fx-border-radius:22;
+                         -fx-border-color:rgba(255,255,255,0.12);">
+
+                <Label text="Login"
+                       style="-fx-font-size:24px;
+                              -fx-font-weight:bold;
+                              -fx-text-fill:#f1f5f9;"/>
+
+                <TextField fx:id="usernameField"
+                           promptText="Username"
+                           prefHeight="42"
+                           style="-fx-background-color:#f8fafc;
+                                  -fx-background-radius:12;
+                                  -fx-font-size:14px;
+                                  -fx-padding:0 12 0 12;"/>
+
+                <PasswordField fx:id="passwordField"
+                               promptText="Password"
+                               prefHeight="42"
+                               style="-fx-background-color:#f8fafc;
+                                      -fx-background-radius:12;
+                                      -fx-font-size:14px;
+                                      -fx-padding:0 12 0 12;"/>
+
+                <!-- BUTTONS -->
+                <HBox spacing="15" alignment="CENTER">
+
+                    <Button text="Login"
+                            onAction="#handleLogin"
+                            prefWidth="140"
+                            prefHeight="42"
+                            style="-fx-background-color:#3b82f6;
+                                   -fx-text-fill:white;
+                                   -fx-font-weight:bold;
+                                   -fx-background-radius:12;"/>
+
+                    <Button text="Register"
+                            onAction="#switchToRegister"
+                            prefWidth="140"
+                            prefHeight="42"
+                            style="-fx-background-color:#22c55e;
+                                   -fx-text-fill:white;
+                                   -fx-font-weight:bold;
+                                   -fx-background-radius:12;"/>
+
+                </HBox>
+
+                <!-- STATUS -->
+                <Label fx:id="statusLabel"
+                       wrapText="true"
+                       maxWidth="320"
+                       style="-fx-text-fill:#fca5a5;
+                              -fx-font-size:13px;
+                              -fx-font-weight:bold;"/>
+
+            </VBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

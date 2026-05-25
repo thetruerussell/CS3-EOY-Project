@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.calorieproject.CalorieTrackerController"
+            style="-fx-background-color:#0f172a;">
+
+    <center>
+
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="AS_NEEDED"
+                    style="-fx-background-color:transparent;
+                           -fx-border-color:transparent;">
+
+            <content>
+
+                <VBox alignment="TOP_CENTER"
+                      spacing="18"
+                      style="-fx-background-color:#0f172a;">
+
+                    <padding>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </padding>
+
+                    <!-- HEADER -->
+                    <VBox alignment="CENTER" spacing="6">
+
+                        <Label text="NutriTrack"
+                               style="-fx-font-size:34px;
+                                      -fx-font-weight:bold;
+                                      -fx-text-fill:#f8fafc;"/>
+
+                        <Label fx:id="welcomeLabel"
+                               text="Welcome"
+                               style="-fx-font-size:16px;
+                                      -fx-text-fill:#94a3b8;"/>
+
+                    </VBox>
+
+                    <!-- GOALS CARD -->
+                    <VBox spacing="10"
+                          prefWidth="620"
+                          style="-fx-background-color:rgba(255,255,255,0.08);
+                                 -fx-padding:20;
+                                 -fx-background-radius:18;
+                                 -fx-border-radius:18;
+                                 -fx-border-color:rgba(255,255,255,0.12);">
+
+                        <Label text="Daily Goal Progress"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;
+                                      -fx-text-fill:#f1f5f9;"/>
+
+                        <Label fx:id="calorieProgressLabel"
+                               style="-fx-text-fill:#e2e8f0;"/>
+
+                        <Label fx:id="proteinProgressLabel"
+                               style="-fx-text-fill:#e2e8f0;"/>
+
+                        <Label fx:id="carbProgressLabel"
+                               style="-fx-text-fill:#e2e8f0;"/>
+
+                        <Label fx:id="fatProgressLabel"
+                               style="-fx-text-fill:#e2e8f0;"/>
+
+                    </VBox>
+
+                    <!-- FEEDBACK CARD -->
+                    <VBox spacing="10"
+                          prefWidth="620"
+                          style="-fx-background-color:rgba(255,255,255,0.08);
+                                 -fx-padding:20;
+                                 -fx-background-radius:18;
+                                 -fx-border-radius:18;
+                                 -fx-border-color:rgba(255,255,255,0.12);">
+
+                        <Label text="Nutrition Feedback"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;
+                                      -fx-text-fill:#f1f5f9;"/>
+
+                        <Label fx:id="feedbackLabel"
+                               wrapText="true"
+                               maxWidth="560"
+                               style="-fx-text-fill:#cbd5e1;
+                                      -fx-font-size:14px;"/>
+
+                    </VBox>
+
+                    <!-- NAVIGATION -->
+                    <HBox spacing="15" alignment="CENTER">
+
+                        <Button text="Create Food"
+                                prefWidth="150"
+                                prefHeight="40"
+                                onAction="#openCreateFood"
+                                style="-fx-background-color:#3b82f6;
+                                       -fx-background-radius:12;
+                                       -fx-text-fill:white;
+                                       -fx-font-weight:bold;"/>
+
+                        <Button text="Create Meal"
+                                prefWidth="150"
+                                prefHeight="40"
+                                onAction="#openCreateMeal"
+                                style="-fx-background-color:#22c55e;
+                                       -fx-background-radius:12;
+                                       -fx-text-fill:white;
+                                       -fx-font-weight:bold;"/>
+
+                        <Button text="Edit Goals"
+                                prefWidth="150"
+                                prefHeight="40"
+                                onAction="#openGoalEditor"
+                                style="-fx-background-color:#a855f7;
+                                       -fx-background-radius:12;
+                                       -fx-text-fill:white;
+                                       -fx-font-weight:bold;"/>
+
+                    </HBox>
+
+                    <!-- SEARCH CARD -->
+                    <VBox spacing="12"
+                          prefWidth="620"
+                          style="-fx-background-color:rgba(255,255,255,0.08);
+                                 -fx-padding:20;
+                                 -fx-background-radius:18;
+                                 -fx-border-radius:18;
+                                 -fx-border-color:rgba(255,255,255,0.12);">
+
+                        <Label text="Search Food / Meal To Eat"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;
+                                      -fx-text-fill:#f1f5f9;"/>
+
+                        <TextField fx:id="searchField"
+                                   promptText="Search foods or meals..."
+                                   onKeyReleased="#handleSearch"
+                                   style="-fx-background-radius:10;
+                                          -fx-padding:10;
+                                          -fx-font-size:14px;"/>
+
+                        <ComboBox fx:id="searchResults"
+                                  promptText="Search Results"
+                                  style="-fx-background-radius:10;"/>
+
+                        <Button text="Eat Selected"
+                                prefWidth="180"
+                                prefHeight="40"
+                                onAction="#handleEatSelected"
+                                style="-fx-background-color:#f59e0b;
+                                       -fx-background-radius:12;
+                                       -fx-text-fill:white;
+                                       -fx-font-weight:bold;"/>
+
+                    </VBox>
+
+                    <!-- LOG CARD -->
+                    <VBox spacing="12"
+                          prefWidth="620"
+                          style="-fx-background-color:rgba(255,255,255,0.08);
+                                 -fx-padding:20;
+                                 -fx-background-radius:18;
+                                 -fx-border-radius:18;
+                                 -fx-border-color:rgba(255,255,255,0.12);">
+
+                        <Label text="Daily Consumption Log"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;
+                                      -fx-text-fill:#f1f5f9;"/>
+
+                        <ListView fx:id="logListView"
+                                  prefHeight="250"
+                                  style="-fx-background-radius:12;"/>
+
+                    </VBox>
+
+                    <!-- LOGOUT -->
+                    <Button text="Log Out"
+                            prefWidth="220"
+                            prefHeight="42"
+                            onAction="#handleLogout"
+                            style="-fx-background-color:#ef4444;
+                                   -fx-background-radius:14;
+                                   -fx-text-fill:white;
+                                   -fx-font-size:14px;
+                                   -fx-font-weight:bold;"/>
+
+                </VBox>
+
+            </content>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

@@ -1,0 +1,4 @@
+FinnJ,Teelee,20,20,20,20
+FinnJ,Teelee,20,20,20,20
+TalenR,Togitty,120000,210,600,10200
+TalenR,Burger w/ Lettuce & Talen,401200,70,1630,40030

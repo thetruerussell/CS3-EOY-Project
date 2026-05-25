@@ -1,0 +1,8 @@
+TalenR,Lettuce,100,10,10,10
+TalenR,Burger,1000,10,10,10
+TalenR,Cat,10000,100,100,100
+TalenR,Talen,100000,10,400,10000
+FinnJ,Talen,10,10,10,10
+FinnJ,Keelee,10,10,10,10
+TalenR,Dog,10000,100,100,100
+GeraldK,son,1000,10,10,100
